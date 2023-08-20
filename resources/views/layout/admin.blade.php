@@ -257,20 +257,10 @@
                 theme: 'bootstrap4'
             })
 
-            //Datemask dd/mm/yyyy
-            $('#datemask').inputmask('dd/mm/yyyy', {
-                'placeholder': 'dd/mm/yyyy'
-            })
-            //Datemask2 mm/dd/yyyy
-            $('#datemask2').inputmask('mm/dd/yyyy', {
-                'placeholder': 'mm/dd/yyyy'
-            })
-            //Money Euro
-            $('[data-mask]').inputmask()
-
             //Date picker
             $('#reservationdate').datetimepicker({
-                format: 'L'
+                format: 'L',
+                locale: 'id',
             });
 
             //Date and time picker
@@ -280,18 +270,39 @@
                 }
             });
 
-            //Date range picker
-            $('#reservation').daterangepicker()
-            //Date range picker with time picker
-            $('#reservationtime').daterangepicker({
-                timePicker: true,
-                timePickerIncrement: 30,
-                locale: {
-                    format: 'MM/DD/YYYY hh:mm A'
-                }
-            })
+
+            // Ubah format tanggal sebelum form dikirimkan
+            $('form').submit(function(event) {
+                var inputTanggal = $('#tanggal').val();
+                var formattedTanggal = moment(inputTanggal, 'MM/DD/YYYY').format('YYYY-MM-DD');
+                $('#tanggal').val(formattedTanggal);
+            });
         })
     </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const currencyInputs = document.querySelectorAll("input[data-type='currency']");
+
+            currencyInputs.forEach(input => {
+                input.addEventListener("keyup", function() {
+                    const value = this.value.replace(/\D/g,
+                    ""); // Menghilangkan semua karakter selain angka
+                    this.value = formatCurrency(value);
+                });
+            });
+
+            function formatCurrency(value) {
+                const formatter = new Intl.NumberFormat("id-ID", {
+                    style: "currency",
+                    currency: "IDR",
+                    minimumFractionDigits: 0
+                });
+                return formatter.format(value);
+            }
+        });
+    </script>
+
 
 </body>
 

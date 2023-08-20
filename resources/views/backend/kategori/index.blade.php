@@ -25,8 +25,8 @@
             </div>
         @endif --}}
         <div class="card-body">
-            <button class="btn btn-primary btn-sm mb-3" data-toggle="modal" data-target="#modal-create"><i
-                    class="fa fa-plus"></i> Tambah</button>
+            <a href="{{ route('kategori.create') }}" class="btn btn-primary btn-sm mb-3" data-toggle="modal"
+                data-target="#modal-createKategori"><i class="fa fa-plus"></i> Tambah</a>
             <table id="example2" class="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -37,15 +37,17 @@
                 </thead>
                 <tbody>
                     @php $no = 1 @endphp
-                    @foreach ($kategori as $data)
+                    @foreach ($kategori as $kategoriData)
                         <tr>
                             <td>{{ $no++ }}</td>
-                            <td>{{ $data->nama }}</td>
+                            <td>{{ $kategoriData->nama }}</td>
                             <td>
-                                <button class="btn btn-info btn-sm mb-3" data-toggle="modal" data-dismiss="modal"
-                                    data-target="#modal-edit{{ $data->id }}"><i class="fa fa-pen"></i> Edit</button>
-                                <a href="{{ route('kategori.destroy', $data) }}" class="btn btn-danger btn-sm mb-3"><i
-                                        class="fas fa-trash-alt"></i>
+                                <a href="{{ route('kategori.edit', $kategoriData->id) }}" class="btn btn-info btn-sm mb-3"
+                                    data-toggle="modal" data-dismiss="modal" data-target="#modal-editKategori"><i
+                                        class="fa fa-pen"></i>
+                                    Edit</a>
+                                <a href="{{ route('kategori.destroy', $kategoriData) }}"
+                                    class="btn btn-danger btn-sm mb-3"><i class="fas fa-trash-alt"></i>
                                     Hapus</a>
                             </td>
                         </tr>
@@ -55,64 +57,8 @@
         </div>
     </div>
 
-    {{-- modal create --}}
-    <div class="modal fade" id="modal-create">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Tambah Data Kategori</h4>
-                </div>
-                <form action="{{ route('kategori.store') }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="nama">Nama Kategori</label>
-                            <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror"
-                                value="{{ old('nama') }}" placeholder="masukkan nama kategori" required>
-                            @error('nama')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="modal-footer justify-content-between">
-                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary btn-sm">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    @include('backend.kategori.create')
 
-    <!-- Modal Edit -->
-    @foreach ($kategori as $data)
-        <div class="modal fade" id="modal-edit{{ $data->id }}">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Data Kategori</h4>
-                    </div>
-                    <form action="{{ route('kategori.update', $data->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="nama">Nama Kategori</label>
-                                <input type="text" name="nama"
-                                    class="form-control @error('nama') is-invalid @enderror" value="{{ $data->nama }}"
-                                    placeholder="masukkan nama kategori" required>
-                                @error('nama')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-                        </div>
-                        <div class="modal-footer justify-content-between">
-                            <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Tutup</button>
-                            <button type="submit" class="btn btn-primary btn-sm">Simpan Perubahan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    @endforeach
+    @include('backend.kategori.edit')
 
 @endsection

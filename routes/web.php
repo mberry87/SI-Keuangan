@@ -30,12 +30,16 @@ Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
 // kategori
 Route::get('/kategori/index', [KategoriController::class, 'index'])->name('kategori.index');
+Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
+Route::get('/kategori/{id}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
 Route::post('/kategori/store', [KategoriController::class, 'store'])->name('kategori.store');
 Route::put('/kategori/{id}', [KategoriController::class, 'update'])->name('kategori.update');
 Route::get('/kategori/{id}', [KategoriController::class, 'destroy'])->name('kategori.destroy');
 
 // transaksi
 Route::get('/transaksi/index', [TransaksiController::class, 'index'])->name('transaksi.index');
+Route::get('/transaksi/create', [TransaksiController::class, 'create'])->name('transaksi.create');
+Route::get('/transaksi/{id}/edit', [TransaksiController::class, 'edit'])->name('transaksi.edit');
 Route::post('/transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
 Route::put('/transaksi/{id}', [TransaksiController::class, 'update'])->name('transaksi.update');
-Route::get('/transaksi/{id}', [TransaksiController::class, 'destroy'])->name('kategori.destroy');
+Route::get('/transaksi/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
