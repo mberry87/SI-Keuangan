@@ -77,7 +77,9 @@ class TransaksiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $transaksi = Transaksi::findOrFail($id);
+
+        return view('backend.transaksi.edit', compact('transaksi'));
     }
 
     /**

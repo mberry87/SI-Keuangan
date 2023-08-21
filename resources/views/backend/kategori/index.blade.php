@@ -30,7 +30,7 @@
             <table id="example2" class="table table-bordered table-hover">
                 <thead>
                     <tr>
-                        <th>Nomor</th>
+                        <th>No</th>
                         <th>Nama Kategori</th>
                         <th>Aksi</th>
                     </tr>

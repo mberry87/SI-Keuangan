@@ -20,7 +20,8 @@
                     </div>
                     <div class="form-group">
                         <label for="jenis">Jenis</label>
-                        <select class="form-control select2" name="jenis" id="jenis" style="width: 100%;">
+                        <select class="form-control select2" name="jenis" id="jenis" style="width: 100%;"
+                            required>
                             <option>== Silahkan Pilih ==</option>
                             <option value="pendapatan">Pendapatan</option>
                             <option value="pengeluaran">Pengeluaran</option>
@@ -28,8 +29,9 @@
                     </div>
                     <div class="form-group">
                         <label for="kategori">Kategori</label>
-                        <select class="form-control select2" name="kategori_id" id="kategori_id" style="width: 100%;">
-                            <option>== Silahkan Pilih ==</option>
+                        <select class="form-control select2" required name="kategori_id" id="kategori_id"
+                            style="width: 100%;">
+                            <option value="">== Silahkan Pilih ==</option>
                             @foreach ($kategori as $kategoriData)
                                 <option value="{{ $kategoriData->id }}">{{ $kategoriData->nama }}</option>
                             @endforeach
