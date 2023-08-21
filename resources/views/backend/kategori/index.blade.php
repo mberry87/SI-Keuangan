@@ -43,8 +43,8 @@
                             <td>{{ $kategoriData->nama }}</td>
                             <td>
                                 <a href="{{ route('kategori.edit', $kategoriData->id) }}" class="btn btn-info btn-sm mb-3"
-                                    data-toggle="modal" data-dismiss="modal" data-target="#modal-editKategori"><i
-                                        class="fa fa-pen"></i>
+                                    data-toggle="modal" data-dismiss="modal"
+                                    data-target="#modal-editKategori{{ $kategoriData->id }}"><i class="fa fa-pen"></i>
                                     Edit</a>
                                 <a href="{{ route('kategori.destroy', $kategoriData) }}"
                                     class="btn btn-danger btn-sm mb-3"><i class="fas fa-trash-alt"></i>
