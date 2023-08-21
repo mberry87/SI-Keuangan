@@ -1,6 +1,6 @@
 <!-- Modal Edit -->
 @foreach ($kategori as $kategoriData)
-    <div class="modal fade" id="modal-editKategori">
+    <div class="modal fade" id="modal-editKategori{{ $kategoriData->id }}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

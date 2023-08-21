@@ -28,7 +28,7 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.transaksi.create');
     }
 
     /**
@@ -108,7 +108,7 @@ class TransaksiController extends Controller
      */
     public function destroy($id)
     {
-        $transaksi = Transaksi::find($id);
+        $transaksi = Transaksi::findOrFail($id);
         $transaksi->delete();
 
         return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil di hapus');
