@@ -18,7 +18,6 @@ class TransaksiController extends Controller
         $kategori = Kategori::all();
         $transaksi = Transaksi::all();
 
-
         return view('backend.transaksi.index', compact('transaksi', 'kategori'));
     }
 
@@ -40,7 +39,23 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'tanggal' => 'required',
+            'jenis' => 'required',
+            'kategori_id' => 'required',
+            'nominal' => 'required',
+            'keterangan' => 'nullable',
+        ]);
+
+        $transaksi = new Transaksi($validatedData);
+        $transaksi->tanggal = $request->tanggal;
+        $transaksi->jenis = $request->jenis;
+        $transaksi->kategori_id = $request->kategori_id;
+        $transaksi->nominal = $request->nominal;
+        $transaksi->keterangan = $request->keterangan;
+        $transaksi->save();
+
+        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil ditambah');
     }
 
     /**
@@ -74,7 +89,15 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $transaksi = Transaksi::find($id);
+        $transaksi->tanggal = $request->tanggal;
+        $transaksi->jenis = $request->jenis;
+        $transaksi->kategori_id = $request->kategori_id;
+        $transaksi->nominal = $request->nominal;
+        $transaksi->keterangan = $request->keterangan;
+        $transaksi->save();
+
+        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil diperbaruhi');
     }
 
     /**
@@ -85,6 +108,9 @@ class TransaksiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $transaksi = Transaksi::find($id);
+        $transaksi->delete();
+
+        return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil di hapus');
     }
 }

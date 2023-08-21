@@ -25,7 +25,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.kategori.create');
     }
 
     /**
@@ -36,13 +36,11 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        // $validateData = $request->validate([
-        //     'nama' => 'required'
-        // ]);
+        $validateData = $request->validate([
+            'nama' => 'required'
+        ]);
 
-        // Kategori::create($validateData);
-
-        $kategori = new Kategori;
+        $kategori = new Kategori($validateData);
         $kategori->nama = $request->nama;
         $kategori->save();
 
@@ -68,7 +66,9 @@ class KategoriController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kategori = Kategori::findOrFail($id);
+
+        return view('backend.kategori.edit', compact('kategori'));
     }
 
     /**
@@ -81,9 +81,7 @@ class KategoriController extends Controller
     public function update(Request $request, $id)
     {
         $kategori = Kategori::find($id);
-
         $kategori->nama = $request->nama;
-
         $kategori->save();
 
         return redirect()->route('kategori.index')->with('success', 'Data anda berhasil diperbaruhi');
