@@ -36,7 +36,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="kategori">Kategori</label>
+                            <label for="kategori_id">Kategori</label>
                             <select class="form-control select2" name="kategori_id" id="kategori_id"
                                 style="width: 100%;">
                                 <option>== Silahkan Pilih ==</option>
