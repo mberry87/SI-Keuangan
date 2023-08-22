@@ -163,7 +163,7 @@
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
-                                    laporan
+                                    User Management
                                 </p>
                             </a>
                         </li>
@@ -287,7 +287,7 @@
             currencyInputs.forEach(input => {
                 input.addEventListener("keyup", function() {
                     const value = this.value.replace(/\D/g,
-                    ""); // Menghilangkan semua karakter selain angka
+                        ""); // Menghilangkan semua karakter selain angka
                     this.value = formatCurrency(value);
                 });
             });
