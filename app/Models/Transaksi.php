@@ -21,4 +21,9 @@ class Transaksi extends Model
     {
         return $this->belongsTo(Kategori::class);
     }
+
+    public function laporan()
+    {
+        return $this->hasMany(Laporan::class);
+    }
 }

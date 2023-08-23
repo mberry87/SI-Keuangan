@@ -10,14 +10,22 @@ class Laporan extends Model
 
     protected $table = 'laporan';
 
-    protected $fillable =
-    [
+    protected $fillable = [
         'tanggal',
-        'kategori_id'
+        'jenis',
+        'kategori_id',
+        'transaksi_id',
+        'nominal',
+        'keterangan',
     ];
 
     public function kategori()
     {
-        return $this->belongsTo(Kategori::class, 'kategori_id');
+        return $this->belongsTo(Kategori::class);
+    }
+
+    public function transaksi()
+    {
+        return $this->belongsTo(Transaksi::class);
     }
 }

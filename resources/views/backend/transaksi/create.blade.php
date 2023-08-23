@@ -20,9 +20,9 @@
                     </div>
                     <div class="form-group">
                         <label for="jenis">Jenis</label>
-                        <select class="form-control select2" name="jenis" id="jenis" style="width: 100%;"
-                            required>
-                            <option>== Silahkan Pilih ==</option>
+                        <select class="form-control select2" required name="jenis" id="jenis"
+                            style="width: 100%;">
+                            <option value="">== Silahkan Pilih ==</option>
                             <option value="pendapatan">Pendapatan</option>
                             <option value="pengeluaran">Pengeluaran</option>
                         </select>

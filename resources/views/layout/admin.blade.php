@@ -271,12 +271,22 @@
                 locale: 'id',
             });
 
-            //Date and time picker
-            $('#reservationdatetime').datetimepicker({
-                icons: {
-                    time: 'far fa-clock'
-                }
+            $('#tanggalMulai').datetimepicker({
+                format: 'L',
+                locale: 'id',
             });
+
+            $('#tanggalSelesai').datetimepicker({
+                format: 'L',
+                locale: 'id',
+            });
+
+            //Date and time picker
+            // $('#reservationdatetime').datetimepicker({
+            //     icons: {
+            //         time: 'far fa-clock'
+            //     }
+            // });
 
 
             // Ubah format tanggal sebelum form dikirimkan

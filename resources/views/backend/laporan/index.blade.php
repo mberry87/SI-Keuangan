@@ -25,69 +25,59 @@
             </div>
         @endif --}}
         <div class="card-body">
-            <a href="{{ route('kategori.create') }}" class="btn btn-primary btn-sm mb-3" data-toggle="modal"
-                data-target="#modal-createKategori"><i class="fa fa-plus"></i> Tambah</a>
-            <div class="row">
-                <div class="col col-md-6">
-                    <form action="{{ route('laporan.index') }}" method="get">
-                        <div class="mb-3">
-                            <label for="from_date" class="form-label">Dari Tanggal</label>
-                            <input type="date" class="form-control" id="from_date" name="from_date"
-                                value="{{ request('from_date') }}">
+            <form action="{{ route('laporan.index') }}" method="GET">
+                <button type="submit" class="btn btn-primary btn-sm mb-3"><i class="fa fa-filter"></i> Filter</button>
+                <div class="row">
+                    <div class="col-sm-12 col-md-4">
+                        <div class="form-group">
+                            <label for="tanggalMulai">Tanggal Mulai</label>
+                            <div class="input-group date" id="tanggalMulai" data-target-input="nearest">
+                                <input type="text" name="tanggal-mulai" id="tanggalMulai"
+                                    class="form-control datetimepicker-input" data-target="#tanggalMulai" required />
+                                <div class="input-group-append" data-target="#tanggalMulai" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="to_date" class="form-label">Sampai Tanggal</label>
-                            <input type="date" class="form-control" id="to_date" name="to_date"
-                                value="{{ request('to_date') }}">
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="form-group">
+                            <label for="tanggalSelesai">Tanggal Selesai</label>
+                            <div class="input-group date" id="tanggalSelesai" data-target-input="nearest">
+                                <input type="text" name="tanggal-selesai" id="tanggalSelesai"
+                                    class="form-control datetimepicker-input" data-target="#tanggalSelesai" required />
+                                <div class="input-group-append" data-target="#tanggalSelesai" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label for="kategori_id" class="form-label">Kategori</label>
-                            <select class="form-select" id="kategori_id" name="kategori_id">
-                                <option value="">Pilih Kategori</option>
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="form-group">
+                            <label for="kategori_id">Kategori</label>
+                            <select class="form-control select2" required name="kategori_id" id="kategori_id"
+                                style="width: 100%;">
+                                <option value="">== Silahkan Pilih ==</option>
                                 @foreach ($kategori as $kategoriData)
-                                    <option value="{{ $kategoriData->id }}"
-                                        {{ old('kategori_id', $kategoriData->kategori_id) == $kategoriData->id ? 'selected' : '' }}>
-                                        {{ $kategoriData->nama }}
-                                    </option>
+                                    <option value="{{ $kategoriData->id }}">{{ $kategoriData->nama }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary">Filter</button>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
     <div class="card">
         <div class="card-body">
-            <form action="{{ route('laporan.index') }}" method="get">
-                {{-- Form filter sama seperti sebelumnya --}}
-            </form>
-
-            <table class="table mt-3">
-                <thead>
-                    <tr>
-                        <th>Tanggal</th>
-                        <th>Kategori</th>
-                        {{-- Tambahkan kolom lain yang Anda butuhkan --}}
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($laporan as $item)
-                        <tr>
-                            <td>{{ $item->tanggal }}</td>
-                            <td>{{ $item->kategori->nama_kategori }}</td>
-                            {{-- Tambahkan kolom lain yang Anda butuhkan --}}
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="2">Tidak ada laporan yang sesuai dengan filter yang diberikan.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+            <div class="row mt-3">
+                <div class="col">
+                </div>
+            </div>
         </div>
     </div>
+
+
 
 @endsection

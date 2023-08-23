@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
-use App\Models\Laporan;
+
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -13,24 +13,11 @@ class LaporanController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $laporanQuery = Laporan::query();
-
-        // Filter berdasarkan tanggal
-        if ($request->has('from_date') && $request->has('to_date')) {
-            $laporanQuery->whereBetween('tanggal', [$request->from_date, $request->to_date]);
-        }
-
-        // Filter berdasarkan kategori
-        if ($request->has('kategori')) {
-            $laporanQuery->where('kategori_id', $request->kategori);
-        }
-
-        $laporan = $laporanQuery->get(); // Menggunakan get() daripada with()
         $kategori = Kategori::all();
 
-        return view('backend.laporan.index', compact('laporan', 'kategori'));
+        return view('backend.laporan.index', compact('kategori'));
     }
 
     /**
