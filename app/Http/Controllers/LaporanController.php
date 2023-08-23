@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
-
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -16,8 +16,28 @@ class LaporanController extends Controller
     public function index()
     {
         $kategori = Kategori::all();
+        $transaksi = Transaksi::all();
 
-        return view('backend.laporan.index', compact('kategori'));
+        return view('backend.laporan.index', compact('transaksi', 'kategori'));
+    }
+
+    public function filter(Request $request)
+    {
+
+        $kategori = Kategori::all();
+
+        $tanggal_mulai = $request->tanggal_mulai;
+        $tanggal_selesai = $request->tanggal_selesai;
+
+        $transaksi = Transaksi::whereDate('tanggal', '>=', $tanggal_mulai)
+            ->whereDate('tanggal', '<=', $tanggal_selesai)
+            ->get();
+
+        $kategori = Kategori::whereDate('nama', '>=', $tanggal_mulai)
+            ->whereDate('nama', '<=', $tanggal_selesai)
+            ->get();
+
+        return view('backend.laporan.index', compact('transaksi', 'kategori'));
     }
 
     /**

@@ -47,3 +47,6 @@ Route::get('/transaksi/{id}', [TransaksiController::class, 'destroy'])->name('tr
 
 // laporan
 Route::get('/laporan/index', [LaporanController::class, 'index'])->name('laporan.index');
+
+// fiter
+Route::get('/filter', [LaporanController::class, 'filter'])->name('filter');
