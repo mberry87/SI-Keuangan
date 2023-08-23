@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\TransaksiController;
 use App\Models\Kategori;
 use Illuminate\Support\Facades\Route;
@@ -43,3 +44,6 @@ Route::get('/transaksi/{id}/edit', [TransaksiController::class, 'edit'])->name('
 Route::post('/transaksi/store', [TransaksiController::class, 'store'])->name('transaksi.store');
 Route::put('/transaksi/{id}', [TransaksiController::class, 'update'])->name('transaksi.update');
 Route::get('/transaksi/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
+
+// laporan
+Route::get('/laporan/index', [LaporanController::class, 'index'])->name('laporan.index');

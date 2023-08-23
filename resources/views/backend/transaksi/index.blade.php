@@ -9,7 +9,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
                     <li class="breadcrumb-item active">Transaksi</li>
                 </ol>
             </div>
@@ -57,7 +57,7 @@
                             </td>
                             <td>{{ $transaksiData->keterangan }}</td>
                             <td>
-                                <a href="route{{ 'transaksi.edit', $transaksiData->id }}" class="btn btn-info btn-sm mb-3"
+                                <a href="{{ route('transaksi.edit', $transaksiData->id) }}" class="btn btn-info btn-sm mb-3"
                                     data-toggle="modal" data-dismiss="modal"
                                     data-target="#modal-editTransaksi{{ $transaksiData->id }}"><i class="fa fa-pen"></i>
                                     Edit</a>
