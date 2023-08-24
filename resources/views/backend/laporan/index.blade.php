@@ -25,14 +25,14 @@
             </div>
         @endif --}}
         <div class="card-body">
-            <form action="{{ route('laporan.index') }}" method="GET">
+            <form action="/filter" method="GET">
                 <button type="submit" class="btn btn-primary btn-sm mb-3"><i class="fa fa-filter"></i> Filter</button>
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <div class="form-group">
-                            <label for="tanggalMulai">Tanggal Mulai</label>
+                            <label for="tanggal-mulai">Tanggal Mulai</label>
                             <div class="input-group date" id="tanggalMulai" data-target-input="nearest">
-                                <input type="text" name="tanggal-mulai" id="tanggalMulai"
+                                <input type="text" name="tanggal_mulai" id="tanggal_mulai"
                                     class="form-control datetimepicker-input" data-target="#tanggalMulai" required />
                                 <div class="input-group-append" data-target="#tanggalMulai" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -42,9 +42,9 @@
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="form-group">
-                            <label for="tanggalSelesai">Tanggal Selesai</label>
+                            <label for="tanggal-selesai">Tanggal Selesai</label>
                             <div class="input-group date" id="tanggalSelesai" data-target-input="nearest">
-                                <input type="text" name="tanggal-selesai" id="tanggalSelesai"
+                                <input type="text" name="tanggal_selesai" id="tanggal_selesai"
                                     class="form-control datetimepicker-input" data-target="#tanggalSelesai" required />
                                 <div class="input-group-append" data-target="#tanggalSelesai" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -73,6 +73,43 @@
         <div class="card-body">
             <div class="row mt-3">
                 <div class="col">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th>Kategori</th>
+                                <th>Pendapatan</th>
+                                <th>Pengeluaran</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php $no = 1 @endphp
+                            @foreach ($transaksi as $transaksiData)
+                                <tr>
+                                    <td>{{ $no++ }}</td>
+                                    <td>{{ $transaksiData->tanggal }}</td>
+                                    <td>{{ $transaksiData->kategori->nama }}</td>
+                                    <td>
+                                        @if ($transaksiData->jenis == 'pendapatan')
+                                            {{ $transaksiData->nominal }}
+                                        @else
+                                            0
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($transaksiData->jenis == 'pengeluaran')
+                                            {{ $transaksiData->nominal }}
+                                        @else
+                                            0
+                                        @endif
+                                    </td>
+                                    <td>{{ $transaksiData->keterangan }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

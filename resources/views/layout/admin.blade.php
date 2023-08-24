@@ -267,17 +267,17 @@
 
             //Date picker
             $('#reservationdate').datetimepicker({
-                format: 'L',
+                format: 'YYYY-M-D',
                 locale: 'id',
             });
 
             $('#tanggalMulai').datetimepicker({
-                format: 'L',
+                format: 'YYYY-M-D',
                 locale: 'id',
             });
 
             $('#tanggalSelesai').datetimepicker({
-                format: 'L',
+                format: 'YYYY-M-D',
                 locale: 'id',
             });
 
