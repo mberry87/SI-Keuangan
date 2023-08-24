@@ -39,18 +39,18 @@
                     @foreach ($transaksi as $transaksiData)
                         <tr>
                             <td>{{ $no++ }}</td>
-                            <td>{{ $transaksiData->tanggal }}</td>
+                            <td>{{ \Carbon\Carbon::parse($transaksiData->tanggal)->format('d-m-Y') }}</td>
                             <td>{{ $transaksiData->kategori->nama }}</td>
                             <td>
                                 @if ($transaksiData->jenis == 'pendapatan')
-                                    {{ $transaksiData->nominal }}
+                                    {{ formatRupiah($transaksiData->nominal, true) }}
                                 @else
                                     0
                                 @endif
                             </td>
                             <td>
                                 @if ($transaksiData->jenis == 'pengeluaran')
-                                    {{ $transaksiData->nominal }}
+                                    {{ formatRupiah($transaksiData->nominal, true) }}
                                 @else
                                     0
                                 @endif

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use App\Models\Transaksi;
+
 use Illuminate\Http\Request;
 
 class LaporanController extends Controller
@@ -24,8 +25,6 @@ class LaporanController extends Controller
     public function filter(Request $request)
     {
 
-        $kategori = Kategori::all();
-
         $tanggal_mulai = $request->tanggal_mulai;
         $tanggal_selesai = $request->tanggal_selesai;
 
@@ -33,21 +32,18 @@ class LaporanController extends Controller
             ->whereDate('tanggal', '<=', $tanggal_selesai)
             ->get();
 
-        $kategori = Kategori::whereDate('nama', '>=', $tanggal_mulai)
-            ->whereDate('nama', '<=', $tanggal_selesai)
-            ->get();
+        $totalPendapatan = 0;
+        $totalPengeluaran = 0;
 
-        return view('backend.laporan.index', compact('transaksi', 'kategori'));
-    }
+        foreach ($transaksi as $transaksiData) {
+            if ($transaksiData->jenis == 'pendapatan') {
+                $totalPendapatan += $transaksiData->nominal;
+            } elseif ($transaksiData->jenis == 'pengeluaran') {
+                $totalPengeluaran += $transaksiData->nominal;
+            }
+        }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('backend.laporan.index', compact('transaksi', 'totalPendapatan', 'totalPengeluaran'));
     }
 
     /**
