@@ -24,6 +24,9 @@
                 {{ session('success') }}
             </div>
         @endif --}}
+        <div class="card-header">
+            <h3 class="card-title">Tabel Kategori</h3>
+        </div>
         <div class="card-body">
             <a href="{{ route('kategori.create') }}" class="btn btn-primary btn-sm mb-3" data-toggle="modal"
                 data-target="#modal-createKategori"><i class="fa fa-plus"></i> Tambah</a>

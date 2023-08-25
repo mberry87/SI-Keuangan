@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('jenis');
             $table->unsignedBigInteger('kategori_id');
             $table->bigInteger('nominal');
-            $table->string('keterangan')->nullable();
+            $table->string('keterangan');
             $table->timestamps();
 
             $table->foreign('kategori_id')

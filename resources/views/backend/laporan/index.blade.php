@@ -29,7 +29,10 @@
         </div>
         <div class="card-body">
             <form action="/filter" method="GET">
-                <button type="submit" class="btn btn-primary btn-sm mb-3"><i class="fa fa-filter"></i> Filter</button>
+                @csrf
+                <a href="{{ route('filter.index') }}" type="submit" class="btn btn-primary btn-sm mb-3"><i
+                        class="fa fa-filter"></i>
+                    Filter</a>
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <div class="form-group">
@@ -72,69 +75,6 @@
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Hasil Filter Laporan</h3>
-        </div>
-        <div class="card-body">
-            <div class="row mt-3">
-                <div class="col">
-                    <table id="example2" class="table table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>Tanggal</th>
-                                <th>Kategori</th>
-                                <th>Pendapatan</th>
-                                <th>Pengeluaran</th>
-                                <th>Keterangan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                                $no = 1;
-                                $totalPendapatan = 0;
-                                $totalPengeluaran = 0;
-                            @endphp
-                            @foreach ($transaksi as $transaksiData)
-                                <tr>
-                                    <td>{{ $no++ }}</td>
-                                    <td>{{ $transaksiData->tanggal }}</td>
-                                    <td>{{ $transaksiData->kategori->nama }}</td>
-                                    <td>
-                                        @if ($transaksiData->jenis == 'pendapatan')
-                                            {{ $transaksiData->nominal }}
-                                            @php $totalPendapatan += $transaksiData->nominal; @endphp
-                                        @else
-                                            0
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if ($transaksiData->jenis == 'pengeluaran')
-                                            {{ $transaksiData->nominal }}
-                                            @php $totalPengeluaran += $transaksiData->nominal; @endphp
-                                        @else
-                                            0
-                                        @endif
-                                    </td>
-                                    <td>{{ $transaksiData->keterangan }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="3"><strong>Sub Total</strong></td>
-                                <td><strong>{{ $totalPendapatan }}</strong></td>
-                                <td><strong>{{ $totalPengeluaran }}</strong></td>
-                                <td></td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+    @include('backend.filter.index')
 
 @endsection

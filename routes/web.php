@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FilterController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\TransaksiController;
@@ -49,4 +50,4 @@ Route::get('/transaksi/{id}', [TransaksiController::class, 'destroy'])->name('tr
 Route::get('/laporan/index', [LaporanController::class, 'index'])->name('laporan.index');
 
 // fiter
-Route::get('/filter', [LaporanController::class, 'filter'])->name('filter');
+Route::get('/filter/index', [FilterController::class, 'filter'])->name('filter.index');

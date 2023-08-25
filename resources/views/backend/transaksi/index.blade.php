@@ -19,6 +19,9 @@
 
 @section('content')
     <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Tabel Trnsaksi</h3>
+        </div>
         <div class="card-body">
             <a href="{{ route('transaksi.create') }}" class="btn btn-primary btn-sm mb-3" data-toggle="modal"
                 data-target="#modal-createTransaksi"><i class="fa fa-plus"></i> Tambah</a>
@@ -45,14 +48,14 @@
                                 @if ($transaksiData->jenis == 'pendapatan')
                                     {{ formatRupiah($transaksiData->nominal, true) }}
                                 @else
-                                    0
+                                    Rp. 0
                                 @endif
                             </td>
                             <td>
                                 @if ($transaksiData->jenis == 'pengeluaran')
                                     {{ formatRupiah($transaksiData->nominal, true) }}
                                 @else
-                                    0
+                                    Rp. 0
                                 @endif
                             </td>
                             <td>{{ $transaksiData->keterangan }}</td>

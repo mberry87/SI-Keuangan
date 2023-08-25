@@ -214,6 +214,8 @@
 
     <!-- jQuery -->
     <script src="{{ asset('template') }}/plugins/jquery/jquery.min.js"></script>
+    {{-- plugin mask --}}
+    <script src="{{ asset('js') }}/jquery.mask.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('template') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
@@ -238,6 +240,17 @@
     <script src="{{ asset('template') }}/plugins/inputmask/jquery.inputmask.min.js"></script>
     <script src="{{ asset('template') }}/plugins/daterangepicker/daterangepicker.js"></script>
     <script src="{{ asset('template') }}/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+
+
+    {{-- rupiah --}}
+
+    <script>
+        $(document).ready(function() {
+            $('#rupiah').mask("#.##0", {
+                reverse: true
+            });
+        });
+    </script>
 
     <!-- Page table script -->
     <script>
@@ -297,30 +310,6 @@
             });
         })
     </script>
-
-    {{-- <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const currencyInputs = document.querySelectorAll("input[data-type='currency']");
-
-            currencyInputs.forEach(input => {
-                input.addEventListener("keyup", function() {
-                    const value = this.value.replace(/\D/g,
-                        ""); // Menghilangkan semua karakter selain angka
-                    this.value = formatCurrency(value);
-                });
-            });
-
-            function formatCurrency(value) {
-                const formatter = new Intl.NumberFormat("id-ID", {
-                    style: "currency",
-                    currency: "IDR",
-                    minimumFractionDigits: 0
-                });
-                return formatter.format(value);
-            }
-        });
-    </script> --}}
-
 
 </body>
 
