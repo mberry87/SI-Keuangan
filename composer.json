@@ -11,7 +11,8 @@
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^4.2"
+        "laravel/ui": "^4.2",
+        "nesbot/carbon": "^2.69"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -31,7 +32,12 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        }
+        },
+
+        "files":[
+            "app/Helpers.php"
+        ]
+
     },
     "scripts": {
         "post-autoload-dump": [

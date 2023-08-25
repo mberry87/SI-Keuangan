@@ -267,7 +267,7 @@
 
             //Date picker
             $('#reservationdate').datetimepicker({
-                format: 'YYYY-M-D',
+                format: 'L',
                 locale: 'id',
             });
 
@@ -298,7 +298,7 @@
         })
     </script>
 
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             const currencyInputs = document.querySelectorAll("input[data-type='currency']");
 
@@ -319,7 +319,7 @@
                 return formatter.format(value);
             }
         });
-    </script>
+    </script> --}}
 
 
 </body>

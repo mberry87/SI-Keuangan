@@ -17,13 +17,9 @@ class Transaksi extends Model
         'keterangan',
     ];
 
+
     public function kategori()
     {
         return $this->belongsTo(Kategori::class);
-    }
-
-    public function laporan()
-    {
-        return $this->hasMany(Laporan::class);
     }
 }

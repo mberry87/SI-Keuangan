@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
-            $table->string('tanggal');
+            $table->dateTime('tanggal');
             $table->string('jenis');
             $table->unsignedBigInteger('kategori_id');
-            $table->string('nominal');
+            $table->bigInteger('nominal');
             $table->string('keterangan')->nullable();
             $table->timestamps();
 

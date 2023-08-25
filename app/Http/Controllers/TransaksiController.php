@@ -40,10 +40,10 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'tanggal' => 'required',
+            'tanggal' => 'required|date',
             'jenis' => 'required',
             'kategori_id' => 'required',
-            'nominal' => 'required',
+            'nominal' => 'required|numeric',
             'keterangan' => 'nullable',
         ]);
 
