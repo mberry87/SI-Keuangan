@@ -39,12 +39,13 @@
                     </div>
                     <div class="form-group">
                         <label for="nominal">Nominal</label>
-                        <input type="text" name="nominal" id="nominal" class="form-control"
-                            value="{{ old('nominal') }}" required data-type="currency" required>
+                        <input type="text" name="nominal" id="rupiah" class="form-control"
+                            value="{{ old('nominal') }}" required>
                     </div>
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>
-                        <textarea class="form-control" name="keterangan" id="keterangan" rows="3" placeholder="Masukan keterangan ..."></textarea>
+                        <textarea class="form-control" required name="keterangan" id="keterangan" rows="3"
+                            placeholder="Masukan keterangan ..."></textarea>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">

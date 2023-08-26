@@ -43,15 +43,15 @@ class TransaksiController extends Controller
             'tanggal' => 'required|date',
             'jenis' => 'required',
             'kategori_id' => 'required',
-            'nominal' => 'required|numeric',
-            'keterangan' => 'nullable',
+            'nominal' => 'required',
+            'keterangan' => 'required',
         ]);
 
         $transaksi = new Transaksi($validatedData);
         $transaksi->tanggal = $request->tanggal;
         $transaksi->jenis = $request->jenis;
         $transaksi->kategori_id = $request->kategori_id;
-        $transaksi->nominal = $request->nominal;
+        $transaksi->nominal = str_replace('.', '', $request->nominal);
         $transaksi->keterangan = $request->keterangan;
         $transaksi->save();
 
