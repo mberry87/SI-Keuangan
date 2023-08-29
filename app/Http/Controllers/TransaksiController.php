@@ -18,6 +18,7 @@ class TransaksiController extends Controller
         $kategori = Kategori::all();
         $transaksi = Transaksi::all();
 
+
         return view('backend.transaksi.index', compact('transaksi', 'kategori'));
     }
 
@@ -39,15 +40,8 @@ class TransaksiController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'tanggal' => 'required|date',
-            'jenis' => 'required',
-            'kategori_id' => 'required',
-            'nominal' => 'required',
-            'keterangan' => 'required',
-        ]);
 
-        $transaksi = new Transaksi($validatedData);
+        $transaksi = new Transaksi;
         $transaksi->tanggal = $request->tanggal;
         $transaksi->jenis = $request->jenis;
         $transaksi->kategori_id = $request->kategori_id;
@@ -91,12 +85,23 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $validatedData = $request->validate([
+            'tanggal' => 'required',
+            'jenis' => 'required',
+            'kategori_id' => 'required',
+            'nominal' => 'required',
+            'keterangan' => 'required',
+        ]);
+
         $transaksi = Transaksi::find($id);
-        $transaksi->tanggal = $request->tanggal;
-        $transaksi->jenis = $request->jenis;
-        $transaksi->kategori_id = $request->kategori_id;
-        $transaksi->nominal = $request->nominal;
-        $transaksi->keterangan = $request->keterangan;
+
+        $transaksi->tanggal = $validatedData['tanggal'];
+        $transaksi->jenis = $validatedData['jenis'];
+        $transaksi->kategori_id = $validatedData['kategori_id'];
+        $transaksi->nominal = str_replace('.', '', $validatedData['nominal']);
+        $transaksi->keterangan = $validatedData['keterangan'];
+
         $transaksi->save();
 
         return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil diperbaruhi');

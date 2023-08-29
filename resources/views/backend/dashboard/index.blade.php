@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('layouts.admin')
 @section('title', 'dashboard')
 
 @section('breadcrumb')
@@ -22,45 +22,45 @@
         <div class="col-lg-3 col-6">
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>20</h3>
-                    <p>PEMASUKAN HARI INI</p>
+                    <h5>Rp. {{ formatRupiah($pendapatanHariIni) }}</h5>
+                    <p>PENDAPATAN HARI INI</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-person-add"></i>
+                    <i class="ion ion-cash"></i>
                 </div>
-
             </div>
         </div>
-        <div class="col-lg-3 col-6">
+        <div class="col-lg-3
+                        col-6">
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>20</h3>
-                    <p>PEMASUKAN BULAN INI</p>
+                    <h5>Rp. {{ formatRupiah($pendapatanBulanIni) }}</h5>
+                    <p>PENDAPATAN BULAN INI</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-card"></i>
+                    <i class="ion ion-cash"></i>
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-6">
             <div class="small-box bg-primary">
                 <div class="inner">
-                    <h3>20</h3>
-                    <p>PEMASUKAN TAHUN INI</p>
+                    <h5>Rp. {{ formatRupiah($pendapatanTahunIni) }}</h5>
+                    <p>PENDAPATAN TAHUN INI</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-android-boat"></i>
+                    <i class="ion ion-cash"></i>
                 </div>
             </div>
         </div>
         <div class="col-lg-3 col-6">
             <div class="small-box bg-danger">
                 <div class="inner">
-                    <h3>20</h3>
-                    <p>SELURUH PEMASUKAN</p>
+                    <h5>20</h5>
+                    <p>SELURUH PENDAPATAN</p>
                 </div>
                 <div class="icon">
-                    <i class="ion ion-android-boat"></i>
+                    <i class="ion ion-card"></i>
                 </div>
             </div>
         </div>

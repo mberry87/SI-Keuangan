@@ -10,17 +10,18 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="tanggal">Tanggal</label>
-                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                        <div class="input-group date" id="tanggalTransaksi" data-target-input="nearest">
                             <input type="text" name="tanggal" id="tanggal"
-                                class="form-control datetimepicker-input" data-target="#reservationdate" required />
-                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                class="form-control datetimepicker-input" data-target="#tanggalTransaksi" required />
+                            <div class="input-group-append" data-target="#tanggalTransaksi"
+                                data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="jenis">Jenis</label>
-                        <select class="form-control select2" required name="jenis" id="jenis"
+                        <select class="form-control select2bs4" required name="jenis" id="jenis"
                             style="width: 100%;">
                             <option value="">== Silahkan Pilih ==</option>
                             <option value="pendapatan">Pendapatan</option>
@@ -29,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label for="kategori">Kategori</label>
-                        <select class="form-control select2" required name="kategori_id" id="kategori_id"
+                        <select class="form-control select2bs4" required name="kategori_id" id="kategori_id"
                             style="width: 100%;">
                             <option value="">== Silahkan Pilih ==</option>
                             @foreach ($kategori as $kategoriData)

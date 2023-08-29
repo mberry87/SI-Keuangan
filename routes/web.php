@@ -47,7 +47,12 @@ Route::put('/transaksi/{id}', [TransaksiController::class, 'update'])->name('tra
 Route::get('/transaksi/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
 
 // laporan
-Route::get('/laporan/index', [LaporanController::class, 'index'])->name('laporan.index');
+Route::get('/laporan/create', [LaporanController::class, 'create'])->name('laporan.create');
+Route::get('/laporan/filter', [LaporanController::class, 'filter'])->name('laporan.filter');
 
-// fiter
-Route::get('/filter/index', [FilterController::class, 'filter'])->name('filter.index');
+// laporan pdf
+Route::get('/laporan/cetak-pdf', [LaporanController::class, 'cetakPDF'])->name('laporan.form_pdf');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

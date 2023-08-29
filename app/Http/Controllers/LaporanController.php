@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori;
+
 use App\Models\Transaksi;
+use PDF;
+
 
 use Illuminate\Http\Request;
 
@@ -16,35 +18,47 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $kategori = Kategori::all();
-        $transaksi = Transaksi::all();
+        //
+    }
 
-        return view('backend.laporan.index', compact('transaksi', 'kategori'));
+    public function create(Request $request)
+
+    {
+        $transaksi = Transaksi::all();
+        $hasilLaporan = false;
+
+        return view('backend.laporan.create', compact('transaksi', 'hasilLaporan'));
     }
 
     public function filter(Request $request)
     {
 
-        $tanggal_mulai = $request->tanggal_mulai;
-        $tanggal_selesai = $request->tanggal_selesai;
+        $tanggal_mulai = $request->input('tanggal_mulai');
+        $tanggal_selesai = $request->input('tanggal_selesai');
 
         $transaksi = Transaksi::whereDate('tanggal', '>=', $tanggal_mulai)
             ->whereDate('tanggal', '<=', $tanggal_selesai)
             ->get();
 
-        $totalPendapatan = 0;
-        $totalPengeluaran = 0;
+        $hasilLaporan = true;
 
-        foreach ($transaksi as $transaksiData) {
-            if ($transaksiData->jenis == 'pendapatan') {
-                $totalPendapatan += $transaksiData->nominal;
-            } elseif ($transaksiData->jenis == 'pengeluaran') {
-                $totalPengeluaran += $transaksiData->nominal;
-            }
-        }
-
-        return view('backend.laporan.index', compact('transaksi', 'totalPendapatan', 'totalPengeluaran'));
+        return view('backend.laporan.create', compact('transaksi', 'hasilLaporan', 'tanggal_mulai', 'tanggal_selesai'));
     }
+
+    public function cetakPDF(Request $request)
+    {
+        $tanggal_mulai = $request->input('tanggal_mulai');
+        $tanggal_selesai = $request->input('tanggal_selesai');
+
+        $transaksi = Transaksi::whereDate('tanggal', '>=', $tanggal_mulai)
+            ->whereDate('tanggal', '<=', $tanggal_selesai)
+            ->get();
+
+        $pdf = PDF::loadView('backend.laporan.form_pdf', compact('transaksi', 'tanggal_mulai', 'tanggal_selesai'));
+
+        return $pdf->download('laporan.pdf');
+    }
+
 
     /**
      * Store a newly created resource in storage.

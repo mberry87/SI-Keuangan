@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('tanggal');
+            $table->date('tanggal');
             $table->string('jenis');
             $table->unsignedBigInteger('kategori_id');
             $table->bigInteger('nominal');
