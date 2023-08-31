@@ -32,6 +32,11 @@ class LaporanController extends Controller
 
     public function filter(Request $request)
     {
+        $validateData = $request->validate([
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required',
+        ]);
+
 
         $tanggal_mulai = $request->input('tanggal_mulai');
         $tanggal_selesai = $request->input('tanggal_selesai');

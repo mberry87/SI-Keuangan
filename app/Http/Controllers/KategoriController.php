@@ -15,6 +15,7 @@ class KategoriController extends Controller
     public function index()
     {
         $kategori = Kategori::all();
+
         return view('backend.kategori.index', compact('kategori'));
     }
 
@@ -81,6 +82,13 @@ class KategoriController extends Controller
     public function update(Request $request, $id)
     {
         $kategori = Kategori::find($id);
+
+        $validateData = $request->validate([
+            'nama' => 'required'
+        ]);
+
+
+        $kategori = new Kategori($validateData);
         $kategori->nama = $request->nama;
         $kategori->save();
 
@@ -97,6 +105,7 @@ class KategoriController extends Controller
     {
         $kategori = Kategori::find($id);
         $kategori->delete();
+
 
         return redirect()->route('kategori.index')->with('success', 'Data berhasil di hapus');
     }

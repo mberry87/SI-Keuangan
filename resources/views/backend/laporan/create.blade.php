@@ -32,22 +32,31 @@
                             <label for="tanggal-mulai">Tanggal Mulai</label>
                             <div class="input-group date" id="tanggalMulai" data-target-input="nearest">
                                 <input type="text" name="tanggal_mulai" id="tanggal_mulai"
-                                    class="form-control datetimepicker-input" data-target="#tanggalMulai" required />
+                                    class="form-control datetimepicker-input @error('tanggal_mulai') is-invalid @enderror"
+                                    data-target="#tanggalMulai" value="{{ old('tanggal_mulai') }}" />
                                 <div class="input-group-append" data-target="#tanggalMulai" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
+                                @error('tanggal_mulai')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
+
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <div class="form-group">
                             <label for="tanggal-selesai">Tanggal Selesai</label>
                             <div class="input-group date" id="tanggalSelesai" data-target-input="nearest">
                                 <input type="text" name="tanggal_selesai" id="tanggal_selesai"
-                                    class="form-control datetimepicker-input" data-target="#tanggalSelesai" required />
+                                    class="form-control datetimepicker-input @error('tanggal_selesai') is-invalid @enderror"
+                                    data-target="#tanggalSelesai" value="{{ old('tanggal_selesai') }}" />
                                 <div class="input-group-append" data-target="#tanggalSelesai" data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                 </div>
+                                @error('tanggal_selesai')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -79,13 +88,12 @@
                     </thead>
                     <tbody>
                         @php
-                            $no = 1;
                             $totalPendapatan = 0;
                             $totalPengeluaran = 0;
                         @endphp
                         @foreach ($transaksi as $transaksiData)
                             <tr>
-                                <td>{{ $no++ }}</td>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ \Carbon\Carbon::parse($transaksiData->tanggal)->format('d-m-Y') }}
                                 </td>
                                 <td>{{ $transaksiData->kategori->nama }}</td>

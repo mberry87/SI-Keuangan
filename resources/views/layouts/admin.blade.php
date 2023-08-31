@@ -33,6 +33,8 @@
     <link rel="stylesheet" href="{{ asset('template') }}/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('template') }}/dist/css/adminlte.min.css">
+    {{--  --}}
+    <link rel="stylesheet" href="sweetalert2.min.css">
 
 
 </head>
@@ -103,19 +105,6 @@
                     </div>
                 </div>
 
-                <!-- SidebarSearch Form -->
-                <div class="form-inline">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                            aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -162,7 +151,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ asset('template') }}/index.html" class="nav-link">
+                                    <a href="{{ route('user.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Data User</p>
                                     </a>
@@ -170,7 +159,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ asset('template') }}/index.html" class="nav-link">
+                                    <a href="#" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Tambah User</p>
                                     </a>
@@ -243,7 +232,9 @@
     <script src="{{ asset('template') }}/plugins/daterangepicker/daterangepicker.js"></script>
     <script src="{{ asset('template') }}/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <script src="{{ asset('js/my-app.js') }}"></script>
+    {{-- sweetalert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     {{-- rupiah --}}
     <script>
         $(document).ready(function() {
@@ -324,6 +315,29 @@
             });
         })
     </script>
+
+    {{-- sweetalert --}}
+    <script>
+        $(document).on('click', '#btn-hapus', function(e) {
+            e.preventDefault();
+            var form = $(this).closest('form');
+
+            Swal.fire({
+                title: 'Apakah kamu yakin?',
+                text: "Data akan dihapus",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Hapus!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit(); // Submit form to delete
+                }
+            });
+        });
+    </script>
+
 
 </body>
 

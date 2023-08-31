@@ -41,7 +41,15 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
 
-        $transaksi = new Transaksi;
+        $validateData = $request->validate([
+            'tanggal' => 'required',
+            'jenis' => 'required',
+            'kategori_id' => 'required',
+            'nominal' => 'required',
+            'keterangan' => 'required',
+        ]);
+
+        $transaksi = new Transaksi($validateData);
         $transaksi->tanggal = $request->tanggal;
         $transaksi->jenis = $request->jenis;
         $transaksi->kategori_id = $request->kategori_id;

@@ -14,7 +14,7 @@
                             <div class="input-group date" id="tanggalTransaksiEdit" data-target-input="nearest">
                                 <input type="text" name="tanggal" id="tanggal"
                                     class="form-control datetimepicker-input" data-target="#tanggalTransaksiEdit"
-                                    required value="{{ old('tanggal', $transaksiData->tanggal) }}" />
+                                    value="{{ old('tanggal', $transaksiData->tanggal) }}" />
                                 <div class="input-group-append" data-target="#tanggalTransaksiEdit"
                                     data-toggle="datetimepicker">
                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
@@ -23,8 +23,7 @@
                         </div>
                         <div class="form-group">
                             <label for="jenis">Jenis</label>
-                            <select class="form-control select2bs4" required name="jenis" id="jenisEdit"
-                                style="width: 100%;">
+                            <select class="form-control select2bs4" name="jenis" id="jenisEdit" style="width: 100%;">
                                 <option value="pendapatan"
                                     {{ old('jenis', $transaksiData->jenis) === 'pendapatan' ? 'selected' : '' }}>
                                     Pendapatan
@@ -36,7 +35,7 @@
                         </div>
                         <div class="form-group">
                             <label for="kategori">Kategori</label>
-                            <select class="form-control select2bs4" required name="kategori_id" id="kategori_idEdit"
+                            <select class="form-control select2bs4" name="kategori_id" id="kategori_idEdit"
                                 style="width: 100%;">
                                 @foreach ($kategori as $kategoriData)
                                     <option value="{{ $kategoriData->id }}"
@@ -48,11 +47,11 @@
                         <div class="form-group">
                             <label for="nominal">Nominal</label>
                             <input type="text" name="nominal" id="rupiahEdit" class="form-control"
-                                value="{{ old('nominal', $transaksiData->nominal) }}" required>
+                                value="{{ old('nominal', $transaksiData->nominal) }}">
                         </div>
                         <div class="form-group">
                             <label for="keterangan">Keterangan</label>
-                            <textarea class="form-control" required name="keterangan" id="keteranganEdit" rows="3"
+                            <textarea class="form-control" name="keterangan" id="keteranganEdit" rows="3"
                                 placeholder="Masukkan keterangan ...">{{ old('keterangan', $transaksiData->keterangan) }}</textarea>
                         </div>
                     </div>

@@ -7,34 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Laporan</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/my-app.css') }}">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        .table td th {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-
-        .table th {
-            background-color: #f2f2f2;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .mb-3 {
-            margin-bottom: 15px;
-        }
+        /*  */
     </style>
 </head>
 
