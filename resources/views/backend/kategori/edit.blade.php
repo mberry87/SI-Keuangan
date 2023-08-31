@@ -13,8 +13,10 @@
                         <div class="form-group">
                             <label for="nama">Nama Kategori</label>
                             <input type="text" name="nama" id="nama" class="form-control"
-                                value="{{ old('nama', $kategoriData->nama) }}" placeholder="masukkan nama kategori"
-                                required>
+                                value="{{ old('nama', $kategoriData->nama) }}" placeholder="masukkan nama kategori">
+                            @error('nama')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="modal-footer justify-content-between">

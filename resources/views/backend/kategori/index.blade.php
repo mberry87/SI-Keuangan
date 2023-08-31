@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('layouts.admin')
 @section('title', 'Kategori')
 
 @section('breadcrumb')
@@ -19,11 +19,6 @@
 
 @section('content')
     <div class="card">
-        {{-- @if (session('success'))
-            <div class="alert alert-success" role="alert" style="width: 50%">
-                {{ session('success') }}
-            </div>
-        @endif --}}
         <div class="card-header">
             <h3 class="card-title">Tabel Kategori</h3>
         </div>
@@ -39,19 +34,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php $no = 1 @endphp
                     @foreach ($kategori as $kategoriData)
                         <tr>
-                            <td>{{ $no++ }}</td>
+                            <td>{{ $loop->iteration }}</td>
                             <td>{{ $kategoriData->nama }}</td>
                             <td>
-                                <a href="{{ route('kategori.edit', $kategoriData->id) }}" class="btn btn-info btn-sm mb-3"
+                                <a href="{{ route('kategori.edit', $kategoriData->id) }}" class="btn btn-info btn-sm"
                                     data-toggle="modal" data-dismiss="modal"
                                     data-target="#modal-editKategori{{ $kategoriData->id }}"><i class="fa fa-pen"></i>
                                     Edit</a>
-                                <a href="{{ route('kategori.destroy', $kategoriData) }}"
-                                    class="btn btn-danger btn-sm mb-3"><i class="fas fa-trash-alt"></i>
-                                    Hapus</a>
+                                <form action="{{ route('kategori.destroy', $kategoriData->id) }}" method="POST"
+                                    class="d-inline">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm" id="btn-hapus">
+                                        <i class="fas fa-trash"></i>
+                                        Hapus
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -59,6 +59,8 @@
             </table>
         </div>
     </div>
+
+    @include('sweetalert::alert')
 
     @include('backend.kategori.create')
 

@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('layouts.admin')
 @section('title', 'Transaksi')
 
 @section('breadcrumb')
@@ -20,7 +20,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Tabel Trnsaksi</h3>
+            <h3 class="card-title">Tabel Transaksi</h3>
         </div>
         <div class="card-body">
             <a href="{{ route('transaksi.create') }}" class="btn btn-primary btn-sm mb-3" data-toggle="modal"
@@ -38,11 +38,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php $no = 1 @endphp
                     @foreach ($transaksi as $transaksiData)
                         <tr>
-                            <td>{{ $no++ }}</td>
-                            <td>{{ \Carbon\Carbon::parse($transaksiData->tanggal)->format('d-m-Y') }}</td>
+                            <td>{{ $loop->iteration }}</td>
+                            {{-- <td>{{ \Carbon\Carbon::parse($transaksiData->tanggal)->format('d-m-Y') }}</td> --}}
+                            <td>{{ $transaksiData->tanggal }}</td>
                             <td>{{ $transaksiData->kategori->nama }}</td>
                             <td>
                                 @if ($transaksiData->jenis == 'pendapatan')
@@ -60,13 +60,19 @@
                             </td>
                             <td>{{ $transaksiData->keterangan }}</td>
                             <td>
-                                <a href="{{ route('transaksi.edit', $transaksiData->id) }}" class="btn btn-info btn-sm mb-3"
+                                <a href="{{ route('transaksi.edit', $transaksiData->id) }}" class="btn btn-info btn-sm"
                                     data-toggle="modal" data-dismiss="modal"
                                     data-target="#modal-editTransaksi{{ $transaksiData->id }}"><i class="fa fa-pen"></i>
                                     Edit</a>
-                                <a href="{{ route('transaksi.destroy', $transaksiData) }}"
-                                    class="btn btn-danger btn-sm mb-3"><i class="fas fa-trash-alt"></i>
-                                    Hapus</a>
+                                <form action="{{ route('transaksi.destroy', $transaksiData->id) }}" method="POST"
+                                    class="d-inline">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-danger btn-sm" id="btn-hapus">
+                                        <i class="fas fa-trash"></i>
+                                        Hapus
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
@@ -74,6 +80,8 @@
             </table>
         </div>
     </div>
+
+    @include('sweetalert::alert')
 
     @include('backend.transaksi.create')
 
