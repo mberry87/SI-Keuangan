@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Laporan</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('css/my-app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
         /*  */
     </style>
@@ -15,6 +15,11 @@
 
 <body>
     <h2>Data Laporan</h2>
+    <div class="header">
+        <p>Dicetak Oleh : {{ Auth::user()->name }}</p>
+        <p>Dari Tanggal : {{ $tanggal_mulai }}</p>
+        <p>Sampai Tanggal : {{ $tanggal_selesai }}</p>
+    </div>
     <table class="table">
         <thead>
             <tr>

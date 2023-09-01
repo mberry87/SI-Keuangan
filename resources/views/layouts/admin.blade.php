@@ -14,6 +14,9 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('template') }}/dist/css/adminlte.min.css">
 
+    {{-- bootstrap --}}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
@@ -57,7 +60,7 @@
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
                         <img src="{{ asset('template') }}/dist/img/user2-160x160.jpg"
                             class="user-image img-circle elevation-2" alt="User Image">
-                        <span class="d-none d-md-inline">Alexander Pierce</span>
+                        <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
@@ -66,14 +69,22 @@
                                 class="img-circle elevation-2" alt="User Image">
 
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                {{ Auth::user()->name }}
+                                <small>bergabung sejak : {{ Auth::user()->created_at }}</small>
                             </p>
                         </li>
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <a href="#" class="btn btn-default btn-flat">Profile</a>
-                            <a href="#" class="btn btn-default btn-flat float-right">Sign out</a>
+                            <a class="btn btn-default btn-flat float-right" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                Keluar
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </li>
@@ -101,7 +112,7 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
                     </div>
                 </div>
 
@@ -110,7 +121,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <li class="nav-item">
-                            <a href="{{ route('dashboard.index') }}" class="nav-link">
+                            <a href="{{ route('home') }}" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -205,6 +216,7 @@
     <script src="{{ asset('template') }}/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="{{ asset('template') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset('template') }}/plugins/select2/js/select2.full.min.js"></script>
     {{-- plugin mask --}}
