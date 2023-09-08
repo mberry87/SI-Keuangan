@@ -30,6 +30,7 @@
                     <tr>
                         <th>No</th>
                         <th>Tanggal</th>
+                        <th>Departemen</th>
                         <th>Kategori</th>
                         <th>Pendapatan</th>
                         <th>Pengeluaran</th>
@@ -41,8 +42,8 @@
                     @foreach ($transaksi as $transaksiData)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            {{-- <td>{{ \Carbon\Carbon::parse($transaksiData->tanggal)->format('d-m-Y') }}</td> --}}
-                            <td>{{ $transaksiData->tanggal }}</td>
+                            <td>{{ \Carbon\Carbon::parse($transaksiData->tanggal)->format('d-m-Y') }}</td>
+                            <td>{{ $transaksiData->departemen->nama }}</td>
                             <td>{{ $transaksiData->kategori->nama }}</td>
                             <td>
                                 @if ($transaksiData->jenis == 'pendapatan')

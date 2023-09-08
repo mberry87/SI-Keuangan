@@ -24,6 +24,21 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="departemen">Departemen</label>
+                        <select class="form-control select2bs4 @error('departemen_id') is-invalid @enderror"
+                            name="departemen_id" id="departemen_id" style="width: 100%;">
+                            <option value="">== Silahkan Pilih ==</option>
+                            @foreach ($departemen as $departemenData)
+                                <option value="{{ $departemenData->id }}"
+                                    {{ old('departemen_id') == $departemenData->id ? 'selected' : '' }}>
+                                    {{ $departemenData->nama }}</option>
+                            @endforeach
+                        </select>
+                        @error('departemen_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="jenis">Jenis</label>
                         <select class="form-control select2bs4 @error('jenis') is-invalid @enderror" name="jenis"
                             id="jenis" style="width: 100%;">

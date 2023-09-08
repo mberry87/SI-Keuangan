@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Departemen;
+use App\Models\Laporan;
 use App\Models\Transaksi;
 use PDF;
 
@@ -18,48 +19,61 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        //
+        $departemen = Departemen::all();
+        $transaksi = Transaksi::all();
+
+        $hasilLaporan = false;
+
+        return view('backend.laporan.index', compact('departemen', 'transaksi', 'hasilLaporan'));
     }
 
     public function create(Request $request)
 
     {
-        $transaksi = Transaksi::all();
-        $hasilLaporan = false;
-
-        return view('backend.laporan.create', compact('transaksi', 'hasilLaporan'));
+        //
     }
 
     public function filter(Request $request)
     {
+
         $validateData = $request->validate([
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
+            'departemen' => 'nullable',
         ]);
 
 
-        $tanggal_mulai = $request->input('tanggal_mulai');
-        $tanggal_selesai = $request->input('tanggal_selesai');
+        $tanggalMulai = $request->input('tanggal_mulai');
+        $tanggalSelesai = $request->input('tanggal_selesai');
+        $departemenId = $request->input('departemen');
 
-        $transaksi = Transaksi::whereDate('tanggal', '>=', $tanggal_mulai)
-            ->whereDate('tanggal', '<=', $tanggal_selesai)
+        $transaksi = Transaksi::whereDate('tanggal', '>=', $tanggalMulai)
+            ->whereDate('tanggal', '<=', $tanggalSelesai)
+            ->where('departemen_id', $departemenId)
             ->get();
+
+        $departemen = Departemen::all();
 
         $hasilLaporan = true;
 
-        return view('backend.laporan.create', compact('transaksi', 'hasilLaporan', 'tanggal_mulai', 'tanggal_selesai'));
+        return view('backend.laporan.index', compact('transaksi', 'departemen', 'hasilLaporan'));
     }
 
     public function cetakPDF(Request $request)
     {
-        $tanggal_mulai = $request->input('tanggal_mulai');
-        $tanggal_selesai = $request->input('tanggal_selesai');
+        $tanggalMulai = $request->input('tanggal_mulai');
+        $tanggalSelesai = $request->input('tanggal_selesai');
+        // $departemenId = $request->input('departemen');
 
-        $transaksi = Transaksi::whereDate('tanggal', '>=', $tanggal_mulai)
-            ->whereDate('tanggal', '<=', $tanggal_selesai)
-            ->get();
+        // $transaksi = Transaksi::whereDate('tanggal', '>=', $tanggalMulai)
+        //     ->whereDate('tanggal', '<=', $tanggalSelesai)
+        //     ->where('departemen_id', $departemenId)
+        //     ->get();
 
-        $pdf = PDF::loadView('backend.laporan.form_pdf', compact('transaksi', 'tanggal_mulai', 'tanggal_selesai'));
+        $transaksi =  Transaksi::all();
+        $departemen = Departemen::all();
+
+        $pdf = PDF::loadView('backend.laporan.form_pdf', compact('transaksi', 'departemen', 'tanggalMulai', 'tanggalSelesai'));
 
         return $pdf->download('laporan.pdf');
     }

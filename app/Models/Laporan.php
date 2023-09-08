@@ -5,24 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaksi extends Model
+class Laporan extends Model
 {
-    protected $table = 'transaksi';
+    use HasFactory;
 
     protected $fillable = [
-        'tanggal',
-        'jenis',
-        'kategori_id',
+        'tanggal_mulai',
+        'tanggal_selesai',
         'departemen_id',
-        'nominal',
-        'keterangan',
     ];
-
-
-    public function kategori()
-    {
-        return $this->belongsTo(Kategori::class);
-    }
 
     public function departemen()
     {

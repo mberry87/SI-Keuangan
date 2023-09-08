@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('tanggal');
             $table->string('jenis');
             $table->unsignedBigInteger('kategori_id');
+            $table->unsignedBigInteger('departemen_id');
             $table->bigInteger('nominal');
             $table->string('keterangan');
             $table->timestamps();
@@ -25,6 +26,11 @@ return new class extends Migration
             $table->foreign('kategori_id')
                 ->references('id')
                 ->on('kategori')
+                ->onDelete('cascade');
+
+            $table->foreign('departemen_id')
+                ->references('id')
+                ->on('departemen')
                 ->onDelete('cascade');
         });
     }

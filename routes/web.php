@@ -52,7 +52,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/transaksi/{id}', [TransaksiController::class, 'destroy'])->name('transaksi.destroy');
 
     // laporan
-    Route::get('/laporan/create', [LaporanController::class, 'create'])->name('laporan.create');
+    Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
     Route::get('/laporan/filter', [LaporanController::class, 'filter'])->name('laporan.filter');
     // laporan pdf
     Route::get('/laporan/cetak-pdf', [LaporanController::class, 'cetakPDF'])->name('laporan.form_pdf');

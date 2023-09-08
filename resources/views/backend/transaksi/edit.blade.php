@@ -22,6 +22,17 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="departemen">Depertemen</label>
+                            <select class="form-control select2bs4" name="departemen_id" id="departemen_idEdit"
+                                style="width: 100%;">
+                                @foreach ($departemen as $departemenData)
+                                    <option value="{{ $departemenData->id }}"
+                                        {{ old('departemen_id', $transaksiData->departemen_id) == $departemenData->id ? 'selected' : '' }}>
+                                        {{ $departemenData->nama }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="jenis">Jenis</label>
                             <select class="form-control select2bs4" name="jenis" id="jenisEdit" style="width: 100%;">
                                 <option value="pendapatan"
@@ -46,7 +57,7 @@
                         </div>
                         <div class="form-group">
                             <label for="nominal">Nominal</label>
-                            <input type="text" name="nominal" id="rupiahEdit" class="form-control"
+                            <input type="text" name="nominal" class="form-control rupiahEdit"
                                 value="{{ old('nominal', $transaksiData->nominal) }}">
                         </div>
                         <div class="form-group">

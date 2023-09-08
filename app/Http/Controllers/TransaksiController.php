@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Departemen;
 use App\Models\Kategori;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
@@ -17,9 +18,10 @@ class TransaksiController extends Controller
     {
         $kategori = Kategori::all();
         $transaksi = Transaksi::all();
+        $departemen = Departemen::all();
 
 
-        return view('backend.transaksi.index', compact('transaksi', 'kategori'));
+        return view('backend.transaksi.index', compact('transaksi', 'kategori', 'departemen'));
     }
 
     /**
@@ -42,9 +44,10 @@ class TransaksiController extends Controller
     {
 
         $validateData = $request->validate([
-            'tanggal' => 'required',
+            'tanggal' => 'required|date_format:Y-m-d',
             'jenis' => 'required',
             'kategori_id' => 'required',
+            'departemen_id' => 'required',
             'nominal' => 'required',
             'keterangan' => 'required',
         ]);
@@ -53,6 +56,7 @@ class TransaksiController extends Controller
         $transaksi->tanggal = $request->tanggal;
         $transaksi->jenis = $request->jenis;
         $transaksi->kategori_id = $request->kategori_id;
+        $transaksi->departemen_id = $request->departemen_id;
         $transaksi->nominal = str_replace('.', '', $request->nominal);
         $transaksi->keterangan = $request->keterangan;
         $transaksi->save();
@@ -98,6 +102,7 @@ class TransaksiController extends Controller
             'tanggal' => 'required',
             'jenis' => 'required',
             'kategori_id' => 'required',
+            'departemen_id' => 'required',
             'nominal' => 'required',
             'keterangan' => 'required',
         ]);
@@ -107,6 +112,7 @@ class TransaksiController extends Controller
         $transaksi->tanggal = $validatedData['tanggal'];
         $transaksi->jenis = $validatedData['jenis'];
         $transaksi->kategori_id = $validatedData['kategori_id'];
+        $transaksi->departemen_id = $validatedData['departemen_id'];
         $transaksi->nominal = str_replace('.', '', $validatedData['nominal']);
         $transaksi->keterangan = $validatedData['keterangan'];
 

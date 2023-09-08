@@ -145,7 +145,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('laporan.create') }}" class="nav-link">
+                            <a href="{{ route('laporan.index') }}" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Laporan
@@ -254,12 +254,30 @@
                 reverse: true
             });
         });
+    </script>
 
-        $(document).ready(function() {
-            $('#rupiahEdit').mask("#.##0", {
-                reverse: true
+    <script>
+        // Fungsi untuk memformat nominal dengan tanda titik
+        function formatNominal(input) {
+            // Menghapus tanda titik yang sudah ada jika ada
+            var value = input.value.replace(/\./g, '');
+
+            // Menggunakan regex untuk menambahkan tanda titik sebagai pemisah
+            value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+            // Menampilkan nilai yang telah diformat kembali ke input
+            input.value = value;
+        }
+
+        // Mendapatkan semua elemen input dengan class "rupiahEdit"
+        var nominalInputs = document.querySelectorAll(".rupiahEdit");
+
+        // Menambahkan event listener untuk memanggil formatNominal pada setiap elemen input
+        for (var i = 0; i < nominalInputs.length; i++) {
+            nominalInputs[i].addEventListener("input", function() {
+                formatNominal(this);
             });
-        });
+        }
     </script>
 
     <!-- Page table script -->
